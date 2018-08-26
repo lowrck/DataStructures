@@ -9,14 +9,18 @@ public class Main {
         //variables
         boolean done1 = false, done2 = false, done3 = false;
         int ic = 0;
+        int totalnums = 0;
         int[] intin = new int[5000];
         int[] intout = new int[5000];
         String userName;
-        File inputFile = null;
+        String outputString = "";
         //Scanners
         Scanner input = new Scanner(System.in);
         Scanner s = null;
+        File inputFile = null;
+        File outputFile = null;
 
+//idiotproof path validation
         while(done1 != true) {
             System.out.println("Please enter file address: ");
             inputFile = new File(input.next());
@@ -29,19 +33,31 @@ public class Main {
             }
         done1 = true;
         }
+       //Scan in all the numbers from the specified files
         s = new Scanner(inputFile);
         while (s.hasNextInt()) {
             intin[ic] = s.nextInt();
             ic++;
         }
-
-        System.out.println("Number of matching items: " + numSort(intin, intout));
-        for(int output : intout) {
-            if(output != 0) {
-                System.out.println(output);
+        //create file and printwriter
+        userName = userName();
+        outputFile = new File(userName + "Numbers.txt");
+        java.io.PrintWriter cout = new java.io.PrintWriter(outputFile);
+        //output numbers to file
+        totalnums = numSort(intin, intout);
+        System.out.println("Number of matching items: " + totalnums);
+        for(int i = 0; i < intout.length; i++) {
+            if(intout[i] != 0) {
+                cout.print(intout[i]);
+            }
+            if(i < totalnums - 1) {
+                cout.print("\n");
             }
 
+
         }
+
+        cout.close();
 
 
 
@@ -67,6 +83,7 @@ public class Main {
             }
         } return counterOutput;
     }
+    //Generate username and output as string using nice user input
     static String userName() {
         Scanner in = new Scanner(System.in);
         String firstName;
