@@ -10,8 +10,8 @@ public class Main {
         boolean done1 = false, done2 = false, done3 = false;
         int ic = 0;
         int totalnums = 0;
-        int[] intin = new int[5000];
-        int[] intout = new int[5000];
+        int[] intin = new int[6000];
+        int[] intout = new int[6000];
         String userName;
         String outputString = "";
         //Scanners
@@ -45,7 +45,6 @@ public class Main {
         java.io.PrintWriter cout = new java.io.PrintWriter(outputFile);
         //output numbers to file
         totalnums = numSort(intin, intout);
-        System.out.println("Number of matching items: " + totalnums);
         for(int i = 0; i < intout.length; i++) {
             if(intout[i] != 0) {
                 cout.print(intout[i]);
@@ -58,6 +57,13 @@ public class Main {
         }
 
         cout.close();
+
+        System.out.print("\n \n \n");
+        System.out.println("Program has Completed");
+        System.out.println("Number of input items: " + ic);
+        System.out.println("Number of output items: " + totalnums);
+        System.out.println("Output file name: " + outputFile.getName());
+
 
 
 
@@ -91,7 +97,6 @@ public class Main {
         System.out.println("Please enter your name with space between first and last name");
         firstName = in.next();
         lastName = in.next();
-        System.out.println( "Your name is: " + firstName + lastName);
         return firstName+lastName;
     }
 }
